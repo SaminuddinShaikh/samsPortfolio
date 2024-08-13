@@ -4,8 +4,7 @@ const cors = require("cors");
 const connectToMongo = require("./database/db");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
-
-connectToMongo();
+const errorMiddleware = require("./middelwares/error");
 
 const app = express();
 
@@ -27,5 +26,9 @@ app.use(
     tempFileDir: "/tmp",
   })
 );
+
+connectToMongo();
+
+app.use(errorMiddleware);
 
 module.exports = app;
