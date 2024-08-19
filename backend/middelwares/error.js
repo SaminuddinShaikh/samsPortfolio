@@ -37,5 +37,5 @@ const errorMiddleware = (err, req, res, next) => {
   });
 };
 
-module.exports = errorMiddleware;
+exports.errorMiddleware = errorMiddleware;
 module.exports = ErrorHandler;

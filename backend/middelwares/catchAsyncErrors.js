@@ -1,7 +1,9 @@
 // to promt the overlooked errors
 
-export const catchAsyncErrors = (theFunction) => {
+const catchAsyncErrors = (theFunction) => {
   return (req, res, next) => {
     Promise.resolve(theFunction(req, res, next)).catch(next);
   };
 };
+
+module.exports = catchAsyncErrors;

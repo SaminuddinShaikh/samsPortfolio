@@ -5,6 +5,7 @@ const connectToMongo = require("./database/db");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middelwares/error");
+const messageRouter = require("./routes/messageRouter");
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(
     tempFileDir: "/tmp",
   })
 );
+
+app.use("/api/v1/message", messageRouter);
 
 connectToMongo();
 
