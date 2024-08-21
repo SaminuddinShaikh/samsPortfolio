@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const sendMessageCtrl = require("../controllers/messageController");
+const messageCtrl = require("../controllers/messageController");
 
-router.post("/send", sendMessageCtrl);
+router.post("/send", messageCtrl.sendMessage);
 
 module.exports = router;

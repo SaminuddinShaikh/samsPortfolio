@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const messageSchema = new mongoose.Schema({
   senderName: {
     type: String,
-    miniLength: [2, "Name must contain at least 2 characters!"],
+    minLength: [2, "Name must contain at least 2 characters!"],
   },
   subject: {
     type: String,
-    miniLength: [2, "Subject must contain at least 2 characters"],
+    minLength: [2, "Subject must contain at least 2 characters"],
   },
   message: {
     type: String,
-    miniLength: [2, "Message must contain at least 2 characters"],
+    minLength: [2, "Message must contain at least 2 characters"],
   },
   createdAt: {
     type: Date,

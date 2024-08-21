@@ -1,3 +1,5 @@
+const { Error } = require("mongoose");
+
 class ErrorHandler extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -30,12 +32,12 @@ const errorMiddleware = (err, req, res, next) => {
   }
 
   const errorMessage = err.errors ? Object.values(err.errors.map((error) => error.message).join(" ")) : err.message;
+  console.log(errorMessage);
 
   return res.status(err.statusCode).json({
     success: false,
     message: errorMessage,
   });
 };
-
 module.exports = errorMiddleware;
 module.exports = ErrorHandler;
