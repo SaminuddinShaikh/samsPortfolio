@@ -3,7 +3,7 @@ const { Error } = require("mongoose");
 class ErrorHandler extends Error {
   constructor(message, statusCode) {
     super(message);
-    this.statusCode = statusCode;
+    this.statusCode = 650;
   }
 }
 
@@ -31,8 +31,16 @@ const errorMiddleware = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  if (err.name === "ValidationError") {
+    const message = Object.values(err.errors)
+      .map((error) => error.message)
+      .join(", "); // Collect all validation error messages
+    err = new ErrorHandler(message, 400); // Create a new ErrorHandler instance with the messages
+  }
+
+  console.log(err);
+
   const errorMessage = err.errors ? Object.values(err.errors.map((error) => error.message).join(" ")) : err.message;
-  console.log(errorMessage);
 
   return res.status(err.statusCode).json({
     success: false,
