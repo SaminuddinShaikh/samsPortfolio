@@ -5,6 +5,7 @@ const URI = process.env.MONGO_URL;
 const connectToMongo = () => {
   mongoose
     .connect(URI, {
+      dbName: "sam-port",
       // userNewUrlParser: true,
       // useUnifiedTopology: true,
     })

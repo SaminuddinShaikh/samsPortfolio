@@ -38,8 +38,6 @@ const errorMiddleware = (err, req, res, next) => {
     err = new ErrorHandler(message, 400); // Create a new ErrorHandler instance with the messages
   }
 
-  console.log(err);
-
   const errorMessage = err.errors ? Object.values(err.errors.map((error) => error.message).join(" ")) : err.message;
 
   return res.status(err.statusCode).json({
