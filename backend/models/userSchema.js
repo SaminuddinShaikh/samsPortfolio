@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   fullName: {
@@ -58,7 +59,6 @@ const userSchema = new mongoose.Schema({
 });
 
 // pre means before save as save metioned in quotes
-
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -66,8 +66,19 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, bcrypt.genSalt(10));
 });
 
+//For comparing password with hashed password
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
+};
+
+//Generating JSON Web Token
+userSchema.methods.generateJsonWebToken = function () {
+  return (
+    jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY),
+    {
+      expiresIn: process.removeListener.JWT_EXPIRES,
+    }
+  );
 };
 
 module.exports = mongoose.model("User", userSchema);
