@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middelwares/error");
 const messageRouter = require("./routes/messageRouter");
+const userRouter = require("./routes/userRouter");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(
 );
 
 app.use("/api/v1/message", messageRouter);
+app.use("/api/v1/user", userRouter);
 
 connectToMongo();
 
