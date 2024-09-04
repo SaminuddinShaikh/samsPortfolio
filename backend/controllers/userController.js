@@ -25,7 +25,7 @@ const userCtrl = {
 
     const { fullName, email, phone, aboutMe, password, portfolioURL, githubURL, instagramURl, facebookURl, twitterURl, linkedInURl } = req.body;
 
-    const user = new User({
+    const user = await User.create({
       fullName,
       email,
       phone,
