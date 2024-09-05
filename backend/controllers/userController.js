@@ -9,7 +9,8 @@ const userCtrl = {
       return next(new ErrorHandler("Avatar And Resume Are Required!", 400));
     }
 
-    const { avatar, resume } = req.files;
+    const avatar = req.files.avatar;
+    const resume = req.files.resume;
 
     const cloudinaryResponseForAvatar = await cloudinary.uploader.upload(avatar.tempFilePath, { folder: "AVATARS" });
 

@@ -49,13 +49,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Portfolio URL Is Required!"],
   },
-  githubURL: String,
-  instagramURl: String,
-  facebookURl: String,
-  twitterURl: String,
-  linkedInURl: String,
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
+  githubURL: { type: String },
+  instagramURl: { type: String },
+  facebookURl: { type: String },
+  twitterURl: { type: String },
+  linkedInURl: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpire: {
+    type: Date,
+  },
 });
 
 // pre means before save as save metioned in quotes
