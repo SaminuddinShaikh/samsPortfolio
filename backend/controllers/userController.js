@@ -5,6 +5,7 @@ const cloudinary = require("cloudinary").v2;
 
 const userCtrl = {
   register: catchAsyncErrors(async (req, res, next) => {
+    console.log(req);
     if (!req.files || Object.keys(req.files).length === 0) {
       return next(new ErrorHandler("Avatar And Resume Are Required!", 400));
     }
